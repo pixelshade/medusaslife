@@ -100,6 +100,9 @@ GameObject:
   - 4: {fileID: 413848}
   - 95: {fileID: 9556666}
   - 136: {fileID: 13641866}
+  - 195: {fileID: 19540120}
+  - 114: {fileID: 11463386}
+  - 54: {fileID: 5491342}
   m_Layer: 0
   m_Name: Cowboy
   m_TagString: Untagged
@@ -881,8 +884,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 7.74, y: 0, z: 5.15}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 455714}
   - {fileID: 481496}
@@ -1465,6 +1468,21 @@ Transform:
   - {fileID: 468786}
   m_Father: {fileID: 491708}
   m_RootOrder: 0
+--- !u!54 &5491342
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112068}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &9556666
 Animator:
   serializedVersion: 3
@@ -1474,7 +1492,7 @@ Animator:
   m_GameObject: {fileID: 112068}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ad52d12ad7e12c644a18f176d31a93bb, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f618ca903fe61d44ba857b10e6e3bf4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1482,6 +1500,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11463386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afe3e7edc3a851449ca420a8f835f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHoldingTreasure: 0
 --- !u!136 &13641866
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1581,6 +1611,26 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.015319377, y: -0.006354898, z: -0.0061095953}
     m_Extent: {x: 0.92025256, y: 0.29217884, z: 0.6467893}
   m_DirtyAABB: 0
+--- !u!195 &19540120
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112068}
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
