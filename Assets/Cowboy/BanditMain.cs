@@ -5,44 +5,71 @@ using Random = UnityEngine.Random;
 
 public class BanditMain : MonoBehaviour
 {
+    public bool isHoldingTreasure = false;
+    public float TimeNeededToTurnToStone = 1;
+    public Material stoneMaterial;
+
     private NavMeshAgent agent;
     private Animator animator;
     private GameObject nextTreasureGO;
+    
     Vector2 smoothDeltaPosition = Vector2.zero;
     Vector2 velocity = Vector2.zero;
-    public bool isHoldingTreasure = false;
+    
+    private float timeTurningToStone = 0;
+    
+    
     // Use this for initialization
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         agent.updatePosition = false;
-
+        
         //reset height on spawn
         transform.position = new Vector3(transform.position.x, 0, transform.position.y);
 
         GoForNextRandomTreasure();
     }
 
+    public void StartTurningToStone()
+    {
+        timeTurningToStone += Time.deltaTime;
+        if (timeTurningToStone > TimeNeededToTurnToStone)
+        {
+            turnToStone();
+        }
+    }
+
+    void turnToStone()
+    {
+        animator.Stop();
+        agent.Stop();
+        Debug.Log("Turned to stone");
+
+        transform.GetChild(1).GetComponent<Renderer>().material = stoneMaterial;
+    }
+
     private void BringTreasureToSpawnPoint()
     {
-        Console.WriteLine("im bringin treasure");
+        Debug.Log("im bringin treasure");
         agent.destination = SpawnPoints.Instance.GetPositionOfRandomSpawnPoint();
     }
 
-    private void GoForNextRandomTreasure()
+    private bool GoForNextRandomTreasure()
     {
         var gos = GameObject.FindGameObjectsWithTag("TREASURE");
         if (gos.Length == 0)
         {
             //there are no more treasures, we stop
             agent.Stop();
-            return;
+            return false;
         }
         // we choose random treasure
         var goalId = Random.Range(0, gos.Length);
         nextTreasureGO = gos[goalId];
         agent.destination = nextTreasureGO.GetComponent<Transform>().position;
+        return true;
     }
 
 
@@ -69,7 +96,7 @@ public class BanditMain : MonoBehaviour
         // Update animation parameters
         animator.SetBool("move", shouldMove);
         animator.SetFloat("velx", velocity.x);
-        Debug.Log(velocity);
+        //Debug.Log(velocity);
         animator.SetFloat("vely", velocity.y);
 
         //GetComponent<LookAt>().lookAtTargetPosition = agent.steeringTarget + transform.forward;
@@ -96,8 +123,9 @@ public class BanditMain : MonoBehaviour
         if (col.gameObject.CompareTag("TREASURE"))
         {
             isHoldingTreasure = true;
-            Destroy(col.gameObject);
             BringTreasureToSpawnPoint();
+            Destroy(col.gameObject);
+            
         } 
         
     }
@@ -115,8 +143,16 @@ public class BanditMain : MonoBehaviour
         if (isHoldingTreasure && col.gameObject.transform.parent.GetComponent<SpawnPoints>() != null)
         {
             Debug.Log("Brought treasure to SP");
-            agent.Stop();
-            Destroy(this);
+            isHoldingTreasure = false;
+            if (!GoForNextRandomTreasure())
+            {
+                agent.destination = transform.position;
+                agent.Stop();
+                Destroy(gameObject);
+            }
+            
+            
+            
         }
     }
 
