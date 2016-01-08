@@ -154,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &198071729 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
@@ -226,6 +226,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserHitParticleSystem: {fileID: 135586, guid: 4aae49ab11150044a9d5b6bf74bbbd89,
     type: 2}
+--- !u!1001 &299943173
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 443752, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 7.650055
+      objectReference: {fileID: 0}
+    - target: {fileID: 443752, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443752, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.23527527
+      objectReference: {fileID: 0}
+    - target: {fileID: 443752, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 443752, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443752, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443752, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 443752, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19875790, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+      propertyPath: InitialModule.startColor.minColor.rgba
+      value: 4293585642
+      objectReference: {fileID: 0}
+    - target: {fileID: 19875790, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+      propertyPath: ShapeModule.radius
+      value: 0.05
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4aae49ab11150044a9d5b6bf74bbbd89, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &386116179
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +914,7 @@ Transform:
   - {fileID: 716996485}
   - {fileID: 578696470}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &764384703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1487,7 @@ Transform:
   - {fileID: 579989478}
   - {fileID: 1878747445}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!114 &1139303880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1630,7 +1680,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &1293208342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,7 +1790,7 @@ GameObject:
   - 198: {fileID: 1448094176}
   - 199: {fileID: 1448094175}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3297,7 +3347,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &1503034532
 GameObject:
   m_ObjectHideFlags: 0
@@ -3346,7 +3396,7 @@ Transform:
   - {fileID: 522040505}
   - {fileID: 1796529077}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &1575572168
 GameObject:
   m_ObjectHideFlags: 0

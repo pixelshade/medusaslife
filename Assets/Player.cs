@@ -7,13 +7,16 @@ public class Player : MonoBehaviour {
     private Vector2 uvOffset = Vector2.zero;
     private Vector2 uvAnimationRate = new Vector2(15, 0);
     public GameObject laserHitParticleSystem;
+
+    private GameObject hitParticleSystem;
     // Use this for initialization
     void Start () {
         cam = Camera.main.transform;
         laserLine = GetComponent<LineRenderer>();
         laserLine.SetWidth(0.2f, 0.2f);
-
-	}
+        hitParticleSystem = Instantiate(laserHitParticleSystem);
+        hitParticleSystem.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -28,10 +31,12 @@ public class Player : MonoBehaviour {
             if (Physics.Raycast(ray, out hit))
             {
                 Laser(ray.origin, hit.point);
-
+                hitParticleSystem.transform.position = hit.point;                
+                hitParticleSystem.SetActive(true);
                 //if there something in our front, check if it's the monolith
                 if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
+                    
                     var bandit = hit.collider.gameObject.GetComponent<BanditMain>();
                     if (bandit == null) return;
                     bandit.StartTurningToStone();
@@ -41,10 +46,12 @@ public class Player : MonoBehaviour {
             } else
             {
                 Laser(ray.origin, ray.GetPoint(50));
+                hitParticleSystem.SetActive(false);
             }
 
         }else
         {
+            hitParticleSystem.SetActive(false);
             Laser(Vector3.zero, Vector3.zero);
         }
         
