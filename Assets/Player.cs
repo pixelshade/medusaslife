@@ -27,20 +27,14 @@ public class Player : MonoBehaviour {
 	void Update () {
         if (Input.GetButton("TurnToStone"))
         {
-            //Fire();
-            //if (medusaVisionParticles.isPaused)            
-                //medusaVisionParticles.Play();
+            //Fire();           
             medusaVisionParticles.enableEmission = true;
             TurnToStone(true);
         }else
         {
             TurnToStone(false);
             medusaVisionParticles.enableEmission = false;
-            //if (!medusaVisionParticles.isPaused)
-            //{
-            //    medusaVisionParticles.Pause();
-            //    medusaVisionParticles.Clear();
-            //}
+           
                 
             // turn of laser
             //hitParticleSystem.SetActive(false);

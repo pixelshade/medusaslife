@@ -22,8 +22,29 @@ public class VisionCollider : MonoBehaviour {
             var bandit = col.gameObject.GetComponent<BanditMain>();
             if (bandit == null) return;
             bandit.StartTurningToStone();
+            //isDirectHitWithoutBarrier(bandit.transform.position);
         }
     }
+
+    bool isDirectHitWithoutBarrier(Vector3 target)
+    {
+        Debug.LogError("TODO: its now working");
+
+        Vector3 direction = transform.TransformDirection(target);
+        //Laser(transform.position, transform.position + fwd);
+        RaycastHit hitInfo;
+        Ray ray = new Ray(transform.parent.position, direction);
+        Debug.DrawRay(transform.position, direction);
+        if (Physics.Raycast(ray, out hitInfo))
+        {
+            if (hitInfo.transform.CompareTag("Enemy")){
+                return true;
+            }       
+        }
+        return false;
+    }
+
+
 
     //void OnTriggerExit(Collider col)
     //{

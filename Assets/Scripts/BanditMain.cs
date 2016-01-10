@@ -8,6 +8,9 @@ public class BanditMain : MonoBehaviour
     public bool isHoldingTreasure = false;
     public float TimeNeededToTurnToStone = 1;
     public Material stoneMaterial;
+    [SerializeField] private AudioClip[] footstepSounds;    // an array of footstep sounds that will be randomly selected from.
+    [SerializeField] private float stepInterval = 5;
+    private float nextStep;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -17,15 +20,18 @@ public class BanditMain : MonoBehaviour
     Vector2 velocity = Vector2.zero;
     
     private float timeTurningToStone = 0;
-    
-    
+    private bool isMoving = false;
+    private AudioSource audioSource;
+
+
     // Use this for initialization
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         agent.updatePosition = false;
-        
+        audioSource = GetComponent<AudioSource>();
+
         //reset height on spawn
         transform.position = new Vector3(transform.position.x, 0, transform.position.y);
 
@@ -44,7 +50,9 @@ public class BanditMain : MonoBehaviour
     void turnToStone()
     {
         animator.Stop();
-        agent.Stop();
+        agent.destination = transform.position;
+        agent.Stop();        
+        //agent.enabled = false;
         Debug.Log("Turned to stone");
 
         transform.GetChild(1).GetComponent<Renderer>().material = stoneMaterial;
@@ -91,10 +99,10 @@ public class BanditMain : MonoBehaviour
         if (Time.deltaTime > 1e-5f)
             velocity = smoothDeltaPosition / Time.deltaTime;
 
-        bool shouldMove = velocity.magnitude > 0.5f && agent.remainingDistance > agent.radius;
-
+        isMoving = velocity.magnitude > 1f && agent.remainingDistance > agent.radius;
+        //Debug.Log(gameObject.name+" vel:"+velocity.magnitude);
         // Update animation parameters
-        animator.SetBool("move", shouldMove);
+        animator.SetBool("move", isMoving);
         animator.SetFloat("velx", velocity.x);
         //Debug.Log(velocity);
         animator.SetFloat("vely", velocity.y);
@@ -106,6 +114,7 @@ public class BanditMain : MonoBehaviour
     {
         // Update position to agent position
         transform.position = agent.nextPosition;
+       
     }
 
     private void FixedUpdate()
@@ -114,6 +123,13 @@ public class BanditMain : MonoBehaviour
         if (nextTreasureGO == null && isHoldingTreasure == false)
         {
             GoForNextRandomTreasure();
+        }
+        if (isMoving && Time.time > nextStep)
+        {
+            var delay = stepInterval + (10*stepInterval / velocity.magnitude);
+            Debug.Log(delay);
+            nextStep = Time.time + (delay);
+            PlayFootStepAudio();
         }
     }
 
@@ -128,6 +144,22 @@ public class BanditMain : MonoBehaviour
             
         } 
         
+    }
+
+    private void PlayFootStepAudio()
+    {
+        //if (!m_CharacterController.isGrounded)
+        //{
+        //    return;
+        //}
+        // pick & play a random footstep sound from the array,
+        // excluding sound at index 0
+        int n = Random.Range(1, footstepSounds.Length);
+        audioSource.clip = footstepSounds[n];
+        audioSource.PlayOneShot(audioSource.clip);
+        // move picked sound to index 0 so it's not picked next time
+        footstepSounds[n] = footstepSounds[0];
+        footstepSounds[0] = audioSource.clip;
     }
 
     private void OnTriggerEnter(Collider col)
