@@ -127,7 +127,7 @@ public class BanditMain : MonoBehaviour
         if (isMoving && Time.time > nextStep)
         {
             var delay = stepInterval + (10*stepInterval / velocity.magnitude);
-            Debug.Log(delay);
+            //Debug.Log(delay);
             nextStep = Time.time + (delay);
             PlayFootStepAudio();
         }
