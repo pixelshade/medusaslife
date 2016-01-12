@@ -45,6 +45,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &107000
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 463490}
+  - 33: {fileID: 3387272}
+  - 23: {fileID: 2385822}
+  - 64: {fileID: 6491026}
+  m_Layer: 0
+  m_Name: Treasure
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &107540
 GameObject:
   m_ObjectHideFlags: 1
@@ -885,7 +903,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.95, y: 0, z: -41.5}
+  m_LocalPosition: {x: 85, y: 0, z: -14}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 455714}
@@ -1113,6 +1131,7 @@ Transform:
   - {fileID: 420784}
   - {fileID: 433810}
   - {fileID: 424028}
+  - {fileID: 463490}
   m_Father: {fileID: 458518}
   m_RootOrder: 0
 --- !u!4 &451046
@@ -1257,6 +1276,18 @@ Transform:
   - {fileID: 474602}
   m_Father: {fileID: 491708}
   m_RootOrder: 1
+--- !u!4 &463490
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107000}
+  m_LocalRotation: {x: 0.5517802, y: -0.23474498, z: -0.7975001, w: -0.06653566}
+  m_LocalPosition: {x: -0.187, y: 0.182, z: 0.016}
+  m_LocalScale: {x: 0.098936856, y: 0.098936856, z: 0.098936856}
+  m_Children: []
+  m_Father: {fileID: 450364}
+  m_RootOrder: 5
 --- !u!4 &467248
 Transform:
   m_ObjectHideFlags: 1
@@ -1469,6 +1500,39 @@ Transform:
   - {fileID: 468786}
   m_Father: {fileID: 491708}
   m_RootOrder: 0
+--- !u!23 &2385822
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107000}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: c30db5b440bcd4613b0707de0bd6293f, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &3387272
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107000}
+  m_Mesh: {fileID: 4300000, guid: 52598b04e30d34007a3056835ff6b75e, type: 3}
 --- !u!54 &5491342
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1484,6 +1548,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &6491026
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: 52598b04e30d34007a3056835ff6b75e, type: 3}
 --- !u!82 &8211540
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1587,6 +1663,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHoldingTreasure: 0
+  holdingTreasure: {fileID: 107000}
+  treasureToDrop: {fileID: 100000, guid: 2ecb034f3ede54b968a919fd40decee7, type: 2}
   TimeNeededToTurnToStone: 0.5
   stoneMaterial: {fileID: 2100000, guid: a6b969ef88a3a324daaff764b8e08d94, type: 2}
   screamSounds:
@@ -1709,8 +1787,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 112068}
   m_Enabled: 1
   m_Radius: 0.36
-  m_Speed: 10
-  m_Acceleration: 10
+  m_Speed: 8
+  m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 260
   m_StoppingDistance: 0

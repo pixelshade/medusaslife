@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 public class BanditMain : MonoBehaviour
 {
     public bool isHoldingTreasure = false;
+    [SerializeField] private GameObject holdingTreasure;
+    [SerializeField] private GameObject treasureToDrop;
     public float TimeNeededToTurnToStone = 1;
     public Material stoneMaterial;
     [SerializeField] private AudioClip[] screamSounds;
@@ -63,7 +65,16 @@ public class BanditMain : MonoBehaviour
     {
         if (_dead) return;
         
-        _dead = true;        
+        _dead = true;
+        
+        if (isHoldingTreasure)
+        {
+            Debug.Log("Dropujem treasure");
+            Instantiate(treasureToDrop, transform.position+(new Vector3(2,0.45f,2)), Quaternion.identity);
+            isHoldingTreasure = false;
+            holdingTreasure.SetActive(false);
+        }
+        
         animator.Stop();
         agent.destination = transform.position;
         agent.Stop();        
@@ -153,6 +164,7 @@ public class BanditMain : MonoBehaviour
         if (col.gameObject.CompareTag("TREASURE"))
         {
             isHoldingTreasure = true;
+            holdingTreasure.SetActive(true);
             BringTreasureToSpawnPoint();
             Destroy(col.gameObject);
             
@@ -191,6 +203,7 @@ public class BanditMain : MonoBehaviour
         {
             Debug.Log("Brought treasure to SP");
             isHoldingTreasure = false;
+            holdingTreasure.SetActive(false);
             if (!GoForNextRandomTreasure())
             {
                 agent.destination = transform.position;

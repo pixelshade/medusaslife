@@ -4133,7 +4133,7 @@ Transform:
   - {fileID: 953185690}
   - {fileID: 1962192539}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!114 &1139303880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4147,7 +4147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BandiTransform: {fileID: 413848, guid: 93f8a13fb89985e4f8d0d8ecff94969a, type: 2}
   MaxBandits: 5
-  DelayInSpawn: 5
+  DelayInSpawn: 1
   SpawnPointsGameObjects: []
 --- !u!1001 &1155811921
 Prefab:
@@ -4391,11 +4391,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ecb034f3ede54b968a919fd40decee7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.4949999
+      value: -1.494
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ecb034f3ede54b968a919fd40decee7, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 56.2
+      value: 58.24
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ecb034f3ede54b968a919fd40decee7, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4593,7 +4593,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 0.9632353, g: 0.951834, b: 0.92073965, a: 1}
-  m_Intensity: 1.09
+  m_Intensity: 0.42
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -7430,7 +7430,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 413848, guid: 93f8a13fb89985e4f8d0d8ecff94969a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -8.95
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 413848, guid: 93f8a13fb89985e4f8d0d8ecff94969a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7438,7 +7438,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 413848, guid: 93f8a13fb89985e4f8d0d8ecff94969a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -41.5
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 413848, guid: 93f8a13fb89985e4f8d0d8ecff94969a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7982,7 +7982,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 2ecb034f3ede54b968a919fd40decee7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -42.7
+      value: -47.93
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ecb034f3ede54b968a919fd40decee7, type: 2}
       propertyPath: m_LocalPosition.y
