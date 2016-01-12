@@ -8,7 +8,10 @@ public class BanditMain : MonoBehaviour
     public bool isHoldingTreasure = false;
     public float TimeNeededToTurnToStone = 1;
     public Material stoneMaterial;
+    [SerializeField] private AudioClip[] screamSounds;
     [SerializeField] private AudioClip[] footstepSounds;    // an array of footstep sounds that will be randomly selected from.
+    
+
     [SerializeField] private float stepInterval = 5;
     private float nextStep;
 
@@ -22,7 +25,7 @@ public class BanditMain : MonoBehaviour
     private float timeTurningToStone = 0;
     private bool isMoving = false;
     private AudioSource audioSource;
-
+    private bool _dead = false;
 
     // Use this for initialization
     private void Start()
@@ -49,13 +52,24 @@ public class BanditMain : MonoBehaviour
 
     void turnToStone()
     {
+        Die();  
+        //agent.enabled = false;
+        //Debug.Log("Turned to stone");
+
+        transform.GetChild(1).GetComponent<Renderer>().material = stoneMaterial;
+    }
+
+    public void Die()
+    {
+        if (_dead) return;
+        
+        _dead = true;        
         animator.Stop();
         agent.destination = transform.position;
         agent.Stop();        
-        //agent.enabled = false;
-        Debug.Log("Turned to stone");
-
-        transform.GetChild(1).GetComponent<Renderer>().material = stoneMaterial;
+        var rndScream = screamSounds[Random.Range(0, screamSounds.Length-1)];
+        //Debug.Log("Im dying...GG"+rndScream.name);
+        audioSource.PlayOneShot(rndScream);
     }
 
     private void BringTreasureToSpawnPoint()
@@ -154,6 +168,7 @@ public class BanditMain : MonoBehaviour
         //}
         // pick & play a random footstep sound from the array,
         // excluding sound at index 0
+        if (_dead) return;
         int n = Random.Range(1, footstepSounds.Length);
         audioSource.clip = footstepSounds[n];
         audioSource.PlayOneShot(audioSource.clip);
@@ -172,7 +187,7 @@ public class BanditMain : MonoBehaviour
         //Debug.Log(col.gameObject.transform.parent.GetComponent<SpawnPoints>());
         //Debug.Log("------------");
         // its one of the SPs in parent spawnpoints GO adn we are bringing treasure
-        if (isHoldingTreasure && col.gameObject.transform.parent.GetComponent<SpawnPoints>() != null)
+        if (isHoldingTreasure && col.gameObject.transform.parent !=null && col.gameObject.transform.parent.GetComponent<SpawnPoints>() != null)
         {
             Debug.Log("Brought treasure to SP");
             isHoldingTreasure = false;

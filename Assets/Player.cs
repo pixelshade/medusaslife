@@ -7,8 +7,10 @@ public class Player : MonoBehaviour {
     private Vector2 uvOffset = Vector2.zero;
     private Vector2 uvAnimationRate = new Vector2(15, 0);
     public GameObject laserHitParticleSystem;
+    [SerializeField] private GameObject trap;
     public GameObject VisionCollider;
     private ParticleSystem medusaVisionParticles;
+    private GameObject _settingTrap;
 
     private GameObject hitParticleSystem;
     // Use this for initialization
@@ -39,6 +41,14 @@ public class Player : MonoBehaviour {
             // turn of laser
             //hitParticleSystem.SetActive(false);
             //Laser(Vector3.zero, Vector3.zero);
+        }
+        if (Input.GetButtonDown("PutTrap"))
+        {
+            _settingTrap = Instantiate(trap) as GameObject;
+        } else
+        if (Input.GetButton("PutTrap"))
+        {
+            if (_settingTrap != null) _settingTrap.transform.position = new Vector3(transform.position.x, transform.position.y-4.27f, transform.position.z) + transform.forward*2;
         }
     }
 

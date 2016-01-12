@@ -1589,6 +1589,13 @@ MonoBehaviour:
   isHoldingTreasure: 0
   TimeNeededToTurnToStone: 0.5
   stoneMaterial: {fileID: 2100000, guid: a6b969ef88a3a324daaff764b8e08d94, type: 2}
+  screamSounds:
+  - {fileID: 8300000, guid: 05ab9866ed9d0134793e1c2bf0b259cb, type: 3}
+  - {fileID: 8300000, guid: 351f1cfdb48f736418460bed2419076d, type: 3}
+  - {fileID: 8300000, guid: 9d02b32fc7c650548ad3ed0eef62cabb, type: 3}
+  - {fileID: 8300000, guid: 66a17a4b5f6d8b942893dd8043e3d1db, type: 3}
+  - {fileID: 8300000, guid: 2c971407e99a38c4eaa9a94f6674e14c, type: 3}
+  - {fileID: 8300000, guid: c2a347e09cc40ec46852170dfb77bd4c, type: 3}
   footstepSounds:
   - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
